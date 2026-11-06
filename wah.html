@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#12100e">
+<title>西方美术史 · 斩</title>
+<style>
+:root{
+  --bg:#12100e; --card:#211d19; --card2:#1a1714; --line:#332d27;
+  --txt:#f2ece3; --dim:#9a8f82; --gold:#e0a94a; --gold2:#c98c2f;
+  --green:#3fbf7f; --red:#e05c5c;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg)}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:radial-gradient(1100px 560px at 50% -8%,#282219 0%,#12100e 62%);
+  color:var(--txt);min-height:100vh;touch-action:manipulation;
+}
+#view{max-width:560px;margin:0 auto;padding:22px 16px 70px;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.btn{
+  display:block;width:100%;padding:15px 18px;margin:10px 0;border:none;border-radius:14px;
+  background:var(--card);color:var(--txt);font-size:16px;font-weight:600;cursor:pointer;
+  border:1px solid var(--line);transition:.15s;font-family:inherit;
+}
+.btn:active{transform:scale(.985)}
+.btn.primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#20180a;border:none;box-shadow:0 6px 22px -8px var(--gold)}
+.btn.ghost{background:transparent;color:var(--dim);border:1px dashed var(--line);font-weight:500;font-size:14px}
+.btn.small{font-size:14px;padding:11px 14px}
+.row2{display:flex;gap:10px}
+.row2 .btn{margin:0}
+.icon-btn{background:none;border:none;color:var(--dim);font-size:20px;width:36px;height:36px;cursor:pointer;border-radius:10px}
+.icon-btn:active{background:#ffffff10}
+.hero{text-align:center;padding:18px 0 6px}
+.hero h1{margin:0;font-size:27px;letter-spacing:3px;font-weight:800;
+  background:linear-gradient(135deg,#f6d9a0,#e0a94a 55%,#a9761f);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:8px 0 0;color:var(--dim);font-size:13px;letter-spacing:1px}
+.ring-wrap{position:relative;width:170px;height:170px;margin:22px auto 14px}
+.ring{width:170px;height:170px;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:#2a2520;stroke-width:11}
+.ring-fg{fill:none;stroke:var(--gold);stroke-width:11;stroke-linecap:round;
+  transition:stroke-dashoffset .7s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 0 8px #e0a94a55)}
+.ring-num{position:absolute;inset:0;display:grid;place-items:center;text-align:center;line-height:1.1}
+.ring-num b{display:block;font-size:38px;font-weight:800;color:var(--gold)}
+.ring-num span{font-size:12px;color:var(--dim)}
+.stat-row{display:flex;gap:10px;margin:14px 0 20px}
+.stat-row>div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 6px;text-align:center}
+.stat-row b{display:block;font-size:20px;color:var(--txt)}
+.stat-row span{font-size:11px;color:var(--dim)}
+.tip{font-size:12px;color:#7d7266;line-height:1.8;text-align:center;margin-top:18px}
+.tip code{background:#ffffff0d;padding:1px 5px;border-radius:4px;color:var(--gold);font-size:11px}
+.study-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.bar{flex:1;height:6px;background:#2a2520;border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));
+  border-radius:3px;transition:width .35s ease}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;
+  box-shadow:0 18px 40px -24px #000}
+.imgbox{position:relative;width:100%;aspect-ratio:4/3;border-radius:16px;overflow:hidden;
+  background:linear-gradient(140deg,hsl(var(--h) 42% 20%),hsl(calc(var(--h) + 45) 45% 9%));
+  display:grid;place-items:center}
+.imgbox .ph{position:absolute;inset:0;display:grid;place-items:center;
+  font-size:15px;font-weight:700;letter-spacing:2px;color:#ffffff22}
+.imgbox img{position:relative;width:100%;height:100%;object-fit:cover;display:block}
+.qtext{font-size:17px;font-weight:700;text-align:center;margin:16px 4px 14px;line-height:1.5}
+.opts{display:grid;gap:9px}
+.opt{
+  width:100%;padding:14px 16px;border-radius:13px;background:var(--card2);
+  border:1px solid var(--line);color:var(--txt);font-size:15px;font-weight:500;
+  text-align:left;cursor:pointer;transition:.15s;font-family:inherit;line-height:1.35;
+}
+.opt:active{transform:scale(.985)}
+.opt.correct{background:#1d3a2b;border-color:var(--green);color:#8ff0bd}
+.opt.wrong{background:#3a1d1d;border-color:var(--red);color:#ff9a9a;animation:shake .35s}
+.opt.disabled{pointer-events:none;opacity:.75}
+.opt.correct.disabled,.opt.wrong.disabled{opacity:1}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.answer{margin-top:16px;border-top:1px solid var(--line);padding-top:14px;animation:fade .2s}
+.verdict{font-size:15px;font-weight:800;margin-bottom:12px}
+.verdict.ok{color:var(--green)}
+.verdict.no{color:var(--red)}
+.info .row{display:flex;gap:12px;padding:6px 2px;font-size:13.5px;line-height:1.5}
+.info .row span{color:var(--dim);min-width:42px;flex:none}
+.info .row b{font-weight:600;color:var(--txt)}
+.actions{display:flex;gap:10px;margin-top:16px}
+.actions .btn{margin:0;font-size:14px;padding:13px 10px}
+.result{text-align:center;padding-top:50px}
+.result .big{font-size:64px;animation:pop .4s}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+.result h2{font-size:22px;margin:10px 0 26px}
+.result-grid{display:flex;gap:10px;margin-bottom:28px}
+.result-grid>div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 6px}
+.result-grid b{display:block;font-size:24px;color:var(--gold)}
+.result-grid span{font-size:11px;color:var(--dim)}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.topbar-title{font-size:16px;font-weight:700}
+.search{width:100%;padding:13px 16px;border-radius:13px;background:var(--card);
+  border:1px solid var(--line);color:var(--txt);font-size:14px;outline:none;font-family:inherit;margin-bottom:14px}
+.search:focus{border-color:var(--gold2)}
+.brow-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);
+  border:1px solid var(--line);border-radius:13px;margin-bottom:8px;cursor:pointer}
+.brow-idx{width:30px;flex:none;font-size:11px;color:var(--dim);font-weight:700;text-align:center}
+.brow-main{flex:1;min-width:0}
+.brow-name{font-size:14.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brow-sub{font-size:11.5px;color:var(--dim);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dot{width:9px;height:9px;border-radius:50%;background:#3a332c;flex:none}
+.mastered .dot{background:var(--green);box-shadow:0 0 8px var(--green)}
+.learning .dot{background:var(--gold)}
+.brow-detail{display:none;padding:12px 0 16px}
+.brow-detail.open{display:block;animation:fade .2s}
+.brow-detail .imgbox{margin-bottom:10px}
+.brow-sub2{font-size:12px;color:var(--dim);text-align:center;line-height:1.6}
+.import-box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:14px}
+.import-box .t{font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:10px}
+.import-box .t b{color:var(--gold)}
+</style>
+</head>
+<body>
+<div id="view"></div>
+<input type="file" id="fileInput" accept="image/*" multiple hidden>
+
+<script>
+/* =========================================================
+   1. 数据
+   ========================================================= */
+const RAW = `
+1|约前16000—前13000|受伤的野牛（阿尔塔米拉洞窟壁画）|佚名|西班牙·史前|前160世纪
+2|约前3300—前3000|雪花石膏瓶（乌鲁克）|佚名|苏美尔|前33世纪
+3|约前3100|纳尔迈石板|佚名|古埃及|前31世纪
+4|约前3000—前2000|斯通亨治巨石阵|佚名|英国·新石器时代|前30世纪
+5|约前2580—前2500|胡夫金字塔与狮身人面像|佚名|古埃及|前26世纪
+6|约前1792—前1750|汉谟拉比法典石碑|佚名|古巴比伦|前18世纪
+7|前17世纪|少年拳击手（阿克罗蒂里壁画）|佚名|希腊·锡拉岛|前17世纪
+8|约前1600—前1500|章鱼纹饰件|佚名|米诺斯文明|前16世纪
+9|前16世纪|阿伽门农黄金面具|佚名|迈锡尼|前16世纪
+10|前1550—前1450|斗牛图（克诺索斯壁画）|佚名|克里特文明|前16世纪
+11|约前1345|纳芙蒂蒂半身像|图特摩斯|古埃及|前14世纪
+12|约前1323|图坦卡蒙黄金面具|佚名|古埃及|前14世纪
+13|约前883—前859|人首翼牛像|佚名|亚述|前9世纪
+14|前7—前4世纪|古希腊三柱式（多立克／爱奥尼／科林斯）|佚名|古希腊|前7世纪
+15|约前540—前530|阿喀琉斯与埃阿斯对弈（黑绘双耳瓶）|埃克塞基亚斯|古希腊|前6世纪
+16|约前500—前480|卡比托利欧母狼|佚名|古罗马|前5世纪
+17|约前450|掷铁饼者|米隆|古希腊|前5世纪
+18|前447—前438|命运三女神|菲狄亚斯|古希腊|前5世纪
+19|约前440|荷矛者|波留克列特斯|古希腊|前5世纪
+20|约前4世纪|疲惫的赫拉克勒斯|留西波斯（罗马摹本）|古希腊／古罗马|前4世纪
+21|约前190|萨莫色雷斯的胜利女神|佚名|希腊化时期|前2世纪
+22|约前1世纪|拉奥孔|阿格桑德罗斯等|希腊化时期|前1世纪
+23|1世纪|花神芙罗拉（庞贝壁画）|佚名|古罗马|1世纪
+24|315|君士坦丁凯旋门|佚名|古罗马|4世纪
+25|约547|查士丁尼皇帝及随从（圣维塔莱教堂镶嵌画）|佚名|拜占庭|6世纪
+26|约1125—1131|弗拉基米尔圣母像|佚名|拜占庭|12世纪
+27|约1280|宝座中的圣母子（圣特里尼塔圣母）|奇马布埃|意大利|13世纪
+28|1304—1306|犹大之吻|乔托|意大利|14世纪
+29|约1305|哀悼基督|乔托|意大利|14世纪
+30|1308—1311|光荣圣母|杜乔|意大利|14世纪
+31|1333|天使报喜|西蒙·马丁尼|意大利|14世纪
+32|1337—1339|好政府与坏政府的寓言|安布罗乔·洛伦采蒂|意大利|14世纪
+33|1415—1432|根特祭坛画|扬·凡·艾克、胡伯特·凡·艾克|尼德兰|15世纪
+34|1420—1436|圣母百花大教堂穹顶|布鲁内莱斯基|意大利|15世纪
+35|约1425—1427|圣三位一体|马萨乔|意大利|15世纪
+36|1427|逐出伊甸园|马萨乔|意大利|15世纪
+37|1434|阿尔诺芬尼夫妇像|扬·凡·艾克|尼德兰|15世纪
+38|约1440|大卫|多纳泰罗|意大利|15世纪
+39|约1440—1450|天使报喜（受胎告知）|安杰利科|意大利|15世纪
+40|1444|鱼的奇迹|康拉德·维茨|瑞士|15世纪
+41|约1450|默伦双连画|让·富凯|法国|15世纪
+42|1453—1454|圣母加冕|夏隆东|法国|15世纪
+43|1455—1460|圣罗马诺之战|乌切洛|意大利|15世纪
+44|约1455—1460|鞭打基督|皮耶罗·德拉·弗朗切斯卡|意大利|15世纪
+45|约1460|君士坦丁大帝之梦|皮耶罗·德拉·弗朗切斯卡|意大利|15世纪
+46|约1465—1472|乌尔比诺公爵夫妇肖像|皮耶罗·德拉·弗朗切斯卡|意大利|15世纪
+47|约1472—1475|受胎告知|达·芬奇|意大利|15世纪
+48|约1476|圣母领报|安托内罗·达·梅西那|意大利|15世纪
+49|约1480|哀悼基督|曼特尼亚|意大利|15世纪
+50|约1485—1486|维纳斯的诞生|波提切利|意大利|15世纪
+51|约1490|维特鲁威人|达·芬奇|意大利|15世纪
+52|约1490—1510|人间乐园|博斯|尼德兰|15世纪
+53|1495—1498|最后的晚餐|达·芬奇|意大利|15世纪
+54|1498—1499|哀悼基督（圣彼得大教堂）|米开朗基罗|意大利|15世纪
+55|1502|野兔|丢勒|德国|16世纪
+56|约1503—1506|蒙娜丽莎|达·芬奇|意大利|16世纪
+57|约1505|暴风雨|乔尔乔内|意大利|16世纪
+58|1505—1506|草地上的圣母|拉斐尔|意大利|16世纪
+59|1507|亚当与夏娃|丢勒|德国|16世纪
+60|约1510|睡着的维纳斯|乔尔乔内|意大利|16世纪
+61|1510—1511|雅典学院|拉斐尔|意大利|16世纪
+62|1511—1512|创造亚当|米开朗基罗|意大利|16世纪
+63|约1512—1514|西斯廷圣母|拉斐尔|意大利|16世纪
+64|约1512—1516|伊森海姆祭坛画|格吕内瓦尔德|德国|16世纪
+65|1514|圣杰罗姆在书房|丢勒|德国|16世纪
+66|1514|忧郁I|丢勒|德国|16世纪
+67|1514|银行家和他的妻子|马西斯|尼德兰|16世纪
+68|约1523|伊拉斯谟肖像|小荷尔拜因|德国|16世纪
+69|约1526—1534|夜、昼与朱利亚诺·德·美第奇|米开朗基罗|意大利|16世纪
+70|约1528|下十字架|蓬托尔莫|意大利|16世纪
+71|约1530|黄金时代|克拉纳赫|德国|16世纪
+72|约1531|航海者圣母|阿莱约·费尔南德斯|西班牙|16世纪
+73|1533|大使们|小荷尔拜因|德国|16世纪
+74|约1535|长颈圣母|帕米贾尼诺|意大利|16世纪
+75|1536—1541|最后的审判|米开朗基罗|意大利|16世纪
+76|1538|乌尔比诺的维纳斯|提香|意大利|16世纪
+77|1563|加纳的婚礼|委罗内塞|意大利|16世纪
+78|1568|农民的婚礼|勃鲁盖尔|尼德兰|16世纪
+79|1586—1588|奥尔加兹伯爵的葬礼|埃尔·格列柯|西班牙|16世纪
+80|1592—1594|最后的晚餐|丁托列托|意大利|16世纪
+81|约1596—1597|年轻的酒神|卡拉瓦乔|意大利|16世纪
+82|约1597—1599|水仙花|卡拉瓦乔|意大利|16世纪
+83|约1601—1606|圣母之死|卡拉瓦乔|意大利|17世纪
+84|1602—1604|基督下葬|卡拉瓦乔|意大利|17世纪
+85|1608—1614|揭开启示录的第五封印|埃尔·格列柯|西班牙|17世纪
+86|1618|掠夺留西帕斯的女儿|鲁本斯|佛兰德斯|17世纪
+87|1618—1620|被荆棘加冕的基督|凡·代克|佛兰德斯|17世纪
+88|约1628—1630|吉普赛女郎|弗兰斯·哈尔斯|荷兰|17世纪
+89|1629|和平与战争的寓意|鲁本斯|佛兰德斯|17世纪
+90|1632|杜普教授的解剖课|伦勃朗|荷兰|17世纪
+91|约1633—1639|乌尔班八世的颂赞|科尔托纳|意大利|17世纪
+92|约1635|有酒杯与柠檬的静物|威廉·克莱兹·海达|荷兰|17世纪
+93|约1635|查理一世行猎图|凡·代克|佛兰德斯|17世纪
+94|约1635|美惠三女神|鲁本斯|佛兰德斯|17世纪
+95|1638|豆王的饮宴|约尔丹斯|佛兰德斯|17世纪
+96|约1638—1639|阿卡迪亚的牧人|普桑|法国|17世纪
+97|1639|圣巴多罗买的殉教|里贝拉|西班牙|17世纪
+98|约1640|悔改的抹大拉|拉图尔|法国|17世纪
+99|约1642|约瑟（木匠）|拉图尔|法国|17世纪
+100|1642|跛足少年|里贝拉|西班牙|17世纪
+101|1650|教皇英诺森十世|委拉斯贵兹|西班牙|17世纪
+102|约1658—1660|倒牛奶的女佣|维米尔|荷兰|17世纪
+103|1662|取样官员（织物商协会的干部们）|伦勃朗|荷兰|17世纪
+104|1663|在阿波罗神庙牺牲的普赛克之父|克洛德·洛兰|法国|17世纪
+105|约1665|戴珍珠耳环的少女|维米尔|荷兰|17世纪
+106|1666—1668|绘画艺术|维米尔|荷兰|17世纪
+107|1672|死亡象征（虚空派静物）|莱亚尔|西班牙|17世纪
+108|约1685|圣依纳爵的荣耀|安德烈亚·波佐|意大利|17世纪
+109|约1718—1719|皮埃罗（小丑）|华托|法国|18世纪
+110|约1720—1721|热尔森画店|华托|法国|18世纪
+111|约1733|铜水箱|夏尔丹|法国|18世纪
+112|1743—1745|时髦的婚姻·婚后不久|荷加斯|英国|18世纪
+113|1756|蓬巴杜夫人像|布歇|法国|18世纪
+114|1767|秋千|弗拉戈纳尔|法国|18世纪
+115|1778|伏尔泰坐像|乌东|法国|18世纪
+116|1784—1785|荷拉斯兄弟之誓|雅克·路易·大卫|法国|18世纪
+117|1785|土耳其浴|勒·巴比耶|法国|18世纪
+118|1793|马拉之死|大卫|法国|18世纪
+119|1808|瓦平松浴女|安格尔|法国|19世纪
+120|1809—1810|橡树林中的修道院|弗里德里希|德国|19世纪
+121|1814|1808年5月3日|戈雅|西班牙|19世纪
+122|1814|大宫女|安格尔|法国|19世纪
+123|1819|梅杜萨之筏|席里柯|法国|19世纪
+124|1819—1823|农神吞噬其子|戈雅|西班牙|19世纪
+125|1821|干草车|康斯太勃尔|英国|19世纪
+126|1827|撒尔达那帕勒之死|德拉克洛瓦|法国|19世纪
+127|1830|自由引导人民|德拉克洛瓦|法国|19世纪
+128|1833—1836|马赛曲（1792年志愿军出发）|吕德|法国|19世纪
+129|1835|上议院和下议院的火灾|透纳|英国|19世纪
+130|1844|雨、蒸汽和速度——大西部铁路|透纳|英国|19世纪
+131|1849—1850|奥尔南的葬礼|库尔贝|法国|19世纪
+132|1851—1852|奥菲利娅|米莱斯|英国|19世纪
+133|1852|枫丹白露森林的橡树|西奥多·卢梭|法国|19世纪
+134|1857—1859|晚钟|米勒|法国|19世纪
+135|约1862|三等客车|杜米埃|法国|19世纪
+136|1863|奥林匹亚|马奈|法国|19世纪
+137|1863|草地上的午餐|马奈|法国|19世纪
+138|1864|摩特枫丹的回忆|柯罗|法国|19世纪
+139|1866|吹短笛的男孩|马奈|法国|19世纪
+140|1870|画室|巴齐耶|法国|19世纪
+141|1870—1873|伏尔加河上的纤夫|列宾|俄国|19世纪
+142|约1874|芭蕾课程|德加|法国|19世纪
+143|1876|煎饼磨坊的舞会|雷诺阿|法国|19世纪
+144|1876—1877|孔雀厅|惠斯勒|美国|19世纪
+145|1877|圣拉扎尔火车站|莫奈|法国|19世纪
+146|1877|青铜时代|罗丹|法国|19世纪
+147|1880|死岛|勃克林|瑞士|19世纪
+148|1882年始建，2026封顶完工|圣家族教堂|高迪|西班牙|19世纪
+149|1883|无名女郎|克拉姆斯柯依|俄国|19世纪
+150|1884|X夫人|萨金特|美国|19世纪
+151|1884—1886|大碗岛星期天的下午|修拉|法国|19世纪
+152|1885|伊凡雷帝杀子|列宾|俄国|19世纪
+153|约1885|老娼妓（美丽的欧米哀尔）|罗丹|法国|19世纪
+154|约1887|圣维克多瓦山|塞尚|法国|19世纪
+155|1887|少女与桃子|谢洛夫|俄国|19世纪
+156|1888|梵高在阿尔勒的卧室|梵高|荷兰|19世纪
+157|1888|雅各与天使搏斗|高更|法国|19世纪
+158|1889|星空|梵高|荷兰|19世纪
+159|1890|麦田与乌鸦|梵高|荷兰|19世纪
+160|约1890—1894|有苹果和陶罐的静物|塞尚|法国|19世纪
+161|1892|穿格子衬衫的女人|博纳尔|法国|19世纪
+162|1893|呐喊|蒙克|挪威|19世纪
+163|1893|莎乐美插图·高潮|比亚兹莱|英国|19世纪
+164|1897|我们从何处来？我们是谁？我们向何处去？|高更|法国|19世纪
+165|1900|向塞尚致敬|莫里斯·德尼|法国|19世纪
+166|1901|圣特罗佩港的出航|西涅克|法国|20世纪
+167|1903|蓝骑士|康定斯基|俄国／德国|20世纪
+168|1905|女人的三个阶段|克里姆特|奥地利|20世纪
+169|1907—1908|吻|克里姆特|奥地利|20世纪
+170|1909—1910|舞蹈|马蒂斯|法国|20世纪
+171|1910—1911|城市的兴起|波丘尼|意大利|20世纪
+172|1911|红色工作室|马蒂斯|法国|20世纪
+173|1911—1912|红塔（红色埃菲尔铁塔）|罗伯特·德劳内|法国|20世纪
+174|1912|被拴住的狗的动态|巴拉|意大利|20世纪
+175|1912|走下楼梯的裸女（第二号）|杜尚|法国|20世纪
+176|1914|一条街上的忧郁与神秘|基里科|意大利|20世纪
+177|1914|干涉主义者的声明|卡洛·卡拉|意大利|20世纪
+178|1914|爱之歌|基里科|意大利|20世纪
+179|约1914|独眼巨人|雷东|法国|20世纪
+180|1915|作为士兵的自画像|凯尔希纳|德国|20世纪
+181|1915|生日|夏加尔|俄国／法国|20世纪
+182|1916|老国王|鲁奥|法国|20世纪
+183|1917|撕碎的纸|阿尔普|法国|20世纪
+184|1917|泉|杜尚|法国／美国|20世纪
+185|1918|白上白|马列维奇|俄国|20世纪
+186|1919|用红楔子打击白军|埃尔·利西茨基|俄国|20世纪
+187|1921|三名妇女|莱热|法国|20世纪
+188|1922|红色气球|保罗·克利|瑞士|20世纪
+189|1922|铁桥|贝克曼|德国|20世纪
+190|1922—1923|母亲们|珂勒惠支|德国|20世纪
+191|1923|构成第八号|康定斯基|俄国／德国|20世纪
+192|1923|渔村|米罗|西班牙|20世纪
+193|1923|红蓝椅|里特维尔德|荷兰|20世纪
+194|1924|安格尔的提琴|曼·雷|美国|20世纪
+195|1930|美国哥特式|格兰特·伍德|美国|20世纪
+196|1931|记忆的永恒|达利|西班牙|20世纪
+197|1932|梦|毕加索|西班牙|20世纪
+198|1932|花（曼陀罗／白色花）|欧姬芙|美国|20世纪
+199|1934|作为宇宙控制者的人|迭戈·里维拉|墨西哥|20世纪
+200|1936|对象（毛皮茶杯）|梅雷·奥本海姆|瑞士|20世纪
+201|1937|格尔尼卡|毕加索|西班牙|20世纪
+202|1939|两个弗里达|弗里达·卡罗|墨西哥|20世纪
+203|1942|夜游者|爱德华·霍普|美国|20世纪
+204|1942—1943|百老汇爵士乐|蒙德里安|荷兰|20世纪
+205|1946|波利尼西亚的天空|马蒂斯|法国|20世纪
+206|1950|第一号，1950|波洛克|美国|20世纪
+207|1952—1953|女人与自行车|德·库宁|美国|20世纪
+208|1953|教皇英诺森十世肖像习作|培根|英国|20世纪
+209|1955—1959|字母组合|劳申伯格|美国|20世纪
+210|1955—1960|西班牙共和国的挽歌|马瑟韦尔|美国|20世纪
+211|1956|究竟是什么使今日的家庭如此不同、如此迷人？|汉弥尔顿|英国|20世纪
+212|1960|空间概念：期望|丰塔纳|意大利|20世纪
+213|1960|进入虚空|伊夫·克莱因|法国|20世纪
+214|1962|金宝汤罐头|安迪·沃霍尔|美国|20世纪
+215|1963|溺水之女|利希滕斯坦|美国|20世纪
+216|1965|一把和三把椅子|科苏斯|美国|20世纪
+217|1965|如何向一只死兔解释绘画|博伊斯|德国|20世纪
+218|1966|LOVE|罗伯特·印第安纳|美国|20世纪
+219|1970|螺旋防波堤|罗伯特·史密森|美国|20世纪
+220|1971|电视大提琴|白南准|韩国／美国|20世纪
+221|1972|一个艺术家的画像（游泳池与两个人）|大卫·霍克尼|英国|20世纪
+222|1974|电视佛陀|白南准|韩国／美国|20世纪
+`;
+
+const DATA = RAW.trim().split('\n').map(line => {
+  const p = line.trim().split('|');
+  return { id:+p[0], year:p[1], name:p[2], artist:p[3], country:p[4], century:p[5] };
+});
+const BY_ID = {};
+DATA.forEach(d => BY_ID[d.id] = d);
+
+/* =========================================================
+   2. 工具
+   ========================================================= */
+const $ = s => document.querySelector(s);
+const view = $('#view');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+/* ---------- 学习进度存储 ---------- */
+const KEY = 'artSRS.v1';
+let store = {};
+try { store = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ store = {}; }
+const save = () => { try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} };
+const getRec = id => store[id];
+function ensureRec(id){
+  if(!store[id]) store[id] = { box:0, seen:0, right:0, wrong:0, due:0, mastered:false };
+  return store[id];
+}
+
+/* ---------- 图片存储（IndexedDB） ---------- */
+const DB_NAME = 'artImages', STORE = 'imgs';
+let IMG_MAP = {};          // id -> objectURL
+let IMG_OK  = new Set();   // images/ 文件夹探测成功的
+
+function openDB(){
+  return new Promise((res, rej) => {
+    const r = indexedDB.open(DB_NAME, 1);
+    r.onupgradeneeded = () => r.result.createObjectStore(STORE);
+    r.onsuccess = () => res(r.result);
+    r.onerror = () => rej(r.error);
+  });
+}
+async function dbPut(id, blob){
+  const db = await openDB();
+  return new Promise((res, rej) => {
+    const t = db.transaction(STORE, 'readwrite');
+    t.objectStore(STORE).put(blob, String(id));
+    t.oncomplete = res; t.onerror = () => rej(t.error);
+  });
+}
+async function dbGetAll(){
+  const db = await openDB();
+  return new Promise((res, rej) => {
+    const t = db.transaction(STORE, 'readonly');
+    const req = t.objectStore(STORE).openCursor();
+    const out = [];
+    req.onsuccess = e => {
+      const c = e.target.result;
+      if(c){ out.push([+c.key, c.value]); c.continue(); }
+      else res(out);
+    };
+    req.onerror = () => rej(req.error);
+  });
+}
+async function dbClear(){
+  const db = await openDB();
+  return new Promise((res, rej) => {
+    const t = db.transaction(STORE, 'readwrite');
+    t.objectStore(STORE).clear();
+    t.oncomplete = res; t.onerror = () => rej(t.error);
+  });
+}
+
+const imgCount = () => Object.keys(IMG_MAP).length;
+const hasImg = id => !!IMG_MAP[id] || IMG_OK.has(id);
+function srcOf(id){
+  return IMG_MAP[id] || ('images/' + id + '.jpg');
+}
+
+/* ---------- 探测 images 文件夹 ---------- */
+let probeTimer = null;
+function probeImages(){
+  DATA.forEach(d => {
+    if(IMG_MAP[d.id] || IMG_OK.has(d.id)) return;
+    const img = new Image();
+    img.onload = () => {
+      IMG_OK.add(d.id);
+      clearTimeout(probeTimer);
+      probeTimer = setTimeout(() => {
+        try{ localStorage.setItem('artImgOK.v1', JSON.stringify([...IMG_OK])); }catch(e){}
+      }, 1200);
+    };
+    img.src = 'images/' + d.id + '.jpg';
+  });
+}
+try { IMG_OK = new Set(JSON.parse(localStorage.getItem('artImgOK.v1')) || []); } catch(e){ IMG_OK = new Set(); }
+
+/* ---------- 导入照片 ---------- */
+async function importFiles(fileList){
+  const files = [...fileList].filter(f => f.type.startsWith('image/'));
+  if(!files.length){ alert('没有选中图片'); return; }
+
+  const used = new Set(Object.keys(IMG_MAP).map(Number));
+  const pending = [];
+  let byName = 0;
+
+  // 1) 文件名以数字开头（如 056_蒙娜丽莎.jpg / 56.jpg）→ 按编号对应
+  for(const f of files){
+    const m = f.name.match(/^(\d{1,3})/);
+    if(m){
+      const n = parseInt(m[1], 10);
+      if(n >= 1 && n <= 222 && !used.has(n)){
+        used.add(n);
+        await putImg(n, f);
+        byName++;
+        continue;
+      }
+    }
+    pending.push(f);
+  }
+
+  // 2) 其余按选择顺序，依次填入最小未占用编号
+  let next = 1;
+  for(const f of pending){
+    while(next <= 222 && used.has(next)) next++;
+    if(next > 222) break;
+    used.add(next);
+    await putImg(next, f);
+    next++;
+  }
+
+  const total = imgCount();
+  alert(`本次导入 ${files.length} 张\n其中按文件名对应 ${byName} 张，按顺序补齐 ${files.length - byName} 张\n当前已有 ${total} / 222 张`);
+  renderHome();
+}
+
+async function putImg(id, file){
+  const url = URL.createObjectURL(file);
+  if(IMG_MAP[id]) URL.revokeObjectURL(IMG_MAP[id]);
+  IMG_MAP[id] = url;
+  try { await dbPut(id, file); } catch(e){}
+}
+
+/* ---------- 间隔重复参数 ---------- */
+const DAY = 86400000;
+const INTERVALS = [10*60000, 0.5*DAY, 2*DAY, 5*DAY, 10*DAY, 20*DAY];
+const MASTER_BOX = 5;
+
+/* =========================================================
+   3. 状态
+   ========================================================= */
+let currentView = 'home';
+let S = null;
+
+/* =========================================================
+   4. 视图路由
+   ========================================================= */
+function showView(v){
+  currentView = v;
+  window.scrollTo(0,0);
+  if(v === 'home') renderHome();
+  else if(v === 'browse') renderBrowse();
+  else if(v === 'study') renderStudy();
+}
+
+/* =========================================================
+   5. 首页
+   ========================================================= */
+function computeStats(){
+  let mastered = 0, learning = 0, fresh = 0;
+  for(const d of DATA){
+    const r = getRec(d.id);
+    if(r && r.mastered) mastered++;
+    else if(r && r.seen) learning++;
+    else fresh++;
+  }
+  return { mastered, learning, fresh, total: DATA.length };
+}
+
+function dueCount(){
+  const now = Date.now();
+  let n = 0;
+  for(const d of DATA){
+    const r = getRec(d.id);
+    if(r && !r.mastered && r.seen && (r.due||0) <= now) n++;
+  }
+  return n;
+}
+
+function renderHome(){
+  const st = computeStats();
+  const R = 52, C = 2 * Math.PI * R;
+  const pct = st.total ? st.mastered / st.total : 0;
+  const due = dueCount();
+  const nImg = imgCount();
+
+  view.innerHTML = `
+    <div class="hero">
+      <h1>西方美术史</h1>
+      <p>222 件作品 · 看图记名 / 作者 / 年代</p>
+    </div>
+
+    <div class="ring-wrap">
+      <svg class="ring" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="${R}" class="ring-bg"/>
+        <circle cx="60" cy="60" r="${R}" class="ring-fg"
+          stroke-dasharray="${C.toFixed(2)}"
+          stroke-dashoffset="${(C * (1 - pct)).toFixed(2)}"/>
+      </svg>
+      <div class="ring-num"><b>${st.mastered}</b><span>/ ${st.total} 已掌握</span></div>
+    </div>
+
+    <div class="stat-row">
+      <div><b>${st.fresh}</b><span>未学习</span></div>
+      <div><b>${st.learning}</b><span>学习中</span></div>
+      <div><b>${st.mastered}</b><span>已斩</span></div>
+    </div>
+
+    <div class="import-box">
+      <div class="t">
+        照片：<b>${nImg} / 222</b>${nImg ? '　✅ 看图模式已开启' : '　（可选，不加也能用文字模式）'}
+      </div>
+      <button class="btn small" data-act="import">📷 一键导入照片（不用改名）</button>
+      ${nImg ? `<button class="btn ghost small" data-act="clearImgs">清空已导入照片</button>` : ''}
+    </div>
+
+    <button class="btn primary" data-act="start">开始学习 · 20 张</button>
+    <div class="row2">
+      <button class="btn small" data-act="review" ${due===0?'disabled style="opacity:.45"':''}>
+        复习待复习${due ? ` (${due})` : ''}
+      </button>
+      <button class="btn small" data-act="browse">图鉴浏览</button>
+    </div>
+
+    <div class="tip">
+      导入时从相册多选图片：<br>
+      · 文件名以数字开头的（<code>056_蒙娜丽莎.jpg</code>）按编号自动对应<br>
+      · 其他照片按你勾选的顺序，依次填入 1、2、3…<br>
+      · 可以分多次导入，自动累加
+    </div>
+    <button class="btn ghost" data-act="reset" style="margin-top:24px">重置全部学习进度</button>
+  `;
+}
+
+/* =========================================================
+   6. 出题引擎
+   ========================================================= */
+function imgBox(item){
+  const h = (item.id * 53) % 360;
+  return `<div class="imgbox" style="--h:${h}">
+    <div class="ph">No.${item.id}</div>
+    <img src="${srcOf(item.id)}" alt="${esc(item.name)}" onerror="this.style.display='none'">
+  </div>`;
+}
+
+function makeOptions(item, key){
+  const correct = item[key];
+  const others = DATA.filter(d => d.id !== item.id);
+  const sameC  = others.filter(d => d.century === item.century);
+  const rest   = others.filter(d => d.century !== item.century);
+  const seen = new Set([correct]);
+  const picked = [];
+  for(const d of shuffle(sameC).concat(shuffle(rest))){
+    const v = d[key];
+    if(!v || seen.has(v)) continue;
+    seen.add(v);
+    picked.push(v);
+    if(picked.length === 3) break;
+  }
+  return shuffle([correct, ...picked]);
+}
+
+function makeQuestion(item){
+  const rec = getRec(item.id);
+  const seen = rec ? rec.seen : 0;
+  const im = hasImg(item.id);
+
+  let type = ['name','artist','century'][(item.id + seen) % 3];
+  if(type === 'artist' && item.artist === '佚名') type = im ? 'name' : 'century';
+  if(type === 'name' && !im) type = item.artist === '佚名' ? 'century' : 'artist';
+
+  if(type === 'name') return { type, text:'这幅作品的名称是？', answer:item.name, options:makeOptions(item,'name') };
+  if(type === 'artist') return { type, text:'这幅作品的作者是？', answer:item.artist, options:makeOptions(item,'artist') };
+  return { type, text:`《${item.name}》大约创作于？`, answer:item.century, options:makeOptions(item,'century') };
+}
+
+/* =========================================================
+   7. 会话
+   ========================================================= */
+function buildQueue(mode, limit){
+  const now = Date.now();
+  const due = [], fresh = [];
+  for(const d of DATA){
+    const r = getRec(d.id);
+    if(r && r.mastered) continue;
+    if(!r || !r.seen) fresh.push(d.id);
+    else if((r.due || 0) <= now) due.push(d.id);
+  }
+  shuffle(due); shuffle(fresh);
+
+  let q = [];
+  if(mode === 'due') q = due.slice(0, limit);
+  else if(mode === 'new') q = fresh.slice(0, limit);
+  else {
+    const half = Math.ceil(limit / 2);
+    q = due.slice(0, half);
+    if(q.length < limit) q = q.concat(fresh.slice(0, limit - q.length));
+    if(q.length < limit) q = q.concat(due.slice(half, half + (limit - q.length)));
+  }
+  return shuffle(q);
+}
+
+function startSession(mode = 'mix', limit = 20){
+  const ids = buildQueue(mode, limit);
+  if(!ids.length){
+    alert(mode === 'due' ? '暂时没有待复习的卡片，先去学习吧～' : '没有可学习的卡片啦～');
+    return;
+  }
+  S = { queue: ids, done: 0, right: 0, wrong: 0, current: null, q: null, answered: false, selected: null, requeued: new Set() };
+  loadNext();
+  showView('study');
+}
+
+function loadNext(){
+  if(!S.queue.length){ finishSession(); return; }
+  const id = S.queue.shift();
+  const item = BY_ID[id];
+  S.current = { item };
+  S.q = makeQuestion(item);
+  S.answered = false;
+  S.selected = null;
+  renderStudy();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+function renderStudy(){
+  if(!S){ renderHome(); return; }
+  const item = S.current.item;
+  const q = S.q;
+  const total = S.done + S.queue.length + 1;
+  const pct = total ? Math.round(S.done / total * 100) : 0;
+
+  view.innerHTML = `
+    <div class="study-top">
+      <button class="icon-btn" data-act="quit">✕</button>
+      <div class="bar"><i style="width:${pct}%"></i></div>
+      <button class="icon-btn" style="opacity:.5;font-size:12px">${S.done+1}</button>
+    </div>
+
+    <div class="card">
+      ${imgBox(item)}
+      <div class="qtext">${q.text}</div>
+      <div class="opts">
+        ${q.options.map(o => `<button class="opt" data-act="pick" data-val="${esc(o)}">${esc(o)}</button>`).join('')}
+      </div>
+    </div>
+
+    ${S.answered ? answerPanel(item) : `<button class="btn ghost" data-act="reveal">不会，直接看答案</button>`}
+  `;
+
+  if(S.answered) markOptions();
+}
+
+function markOptions(){
+  document.querySelectorAll('.opt').forEach(b => {
+    const v = b.dataset.val;
+    if(v === S.q.answer) b.classList.add('correct');
+    else if(S.selected !== null && v === S.selected) b.classList.add('wrong');
+    b.classList.add('disabled');
+  });
+}
+
+function answerPanel(item){
+  const ok = S.selected !== null && S.selected === S.q.answer;
+  return `<div class="answer">
+    <div class="verdict ${ok ? 'ok' : 'no'}">
+      ${ok ? '✅ 答对了' : (S.selected === null ? '👀 看答案' : '❌ 答错了')}
+    </div>
+    <div class="info">
+      <div class="row"><span>作品</span><b>${esc(item.name)}</b></div>
+      <div class="row"><span>作者</span><b>${esc(item.artist)}</b></div>
+      <div class="row"><span>年代</span><b>${esc(item.year)}　（${esc(item.century)}）</b></div>
+      <div class="row"><span>流派</span><b>${esc(item.country)}</b></div>
+    </div>
+    <div class="actions">
+      <button class="btn ghost" data-act="kill">🎯 已掌握</button>
+      <button class="btn primary" data-act="next">下一张 →</button>
+    </div>
+  </div>`;
+}
+
+function pickOption(val){
+  if(!S || S.answered) return;
+  S.selected = val;
+  S.answered = true;
+  const item = S.current.item;
+  const r = ensureRec(item.id);
+  r.seen++;
+  const correct = val === S.q.answer;
+  if(correct){
+    r.right++;
+    r.box = Math.min(r.box + 1, MASTER_BOX);
+    if(r.box >= MASTER_BOX) r.mastered = true;
+    r.due = Date.now() + INTERVALS[r.box];
+    S.right++;
+  } else {
+    r.wrong++;
+    r.box = Math.max(0, r.box - 1);
+    r.due = Date.now() + 10 * 60000;
+    S.wrong++;
+    if(!S.requeued.has(item.id)){
+      S.requeued.add(item.id);
+      S.queue.splice(Math.min(4, S.queue.length), 0, item.id);
+    }
+  }
+  save();
+  renderStudy();
+}
+
+function revealAnswer(){
+  if(!S || S.answered) return;
+  S.selected = null;
+  S.answered = true;
+  const item = S.current.item;
+  const r = ensureRec(item.id);
+  r.seen++;
+  r.wrong++;
+  r.box = Math.max(0, r.box - 1);
+  r.due = Date.now() + 10 * 60000;
+  S.wrong++;
+  if(!S.requeued.has(item.id)){
+    S.requeued.add(item.id);
+    S.queue.splice(Math.min(4, S.queue.length), 0, item.id);
+  }
+  save();
+  renderStudy();
+}
+
+function killCard(){
+  if(!S) return;
+  const r = ensureRec(S.current.item.id);
+  r.mastered = true;
+  r.box = MASTER_BOX;
+  save();
+  nextCard();
+}
+
+function nextCard(){
+  if(!S) return;
+  S.done++;
+  loadNext();
+}
+
+function finishSession(){
+  const total = S.right + S.wrong;
+  const pct = total ? Math.round(S.right / total * 100) : 0;
+  const right = S.right, wrong = S.wrong;
+  S = null;
+  view.innerHTML = `
+    <div class="result">
+      <div class="big">🎉</div>
+      <h2>本轮完成</h2>
+      <div class="result-grid">
+        <div><b>${right}</b><span>答对</span></div>
+        <div><b>${wrong}</b><span>答错</span></div>
+        <div><b>${pct}%</b><span>正确率</span></div>
+      </div>
+      <button class="btn primary" data-act="start">再来一轮</button>
+      <button class="btn ghost" data-act="home">回到首页</button>
+    </div>
+  `;
+  currentView = 'result';
+}
+
+/* =========================================================
+   8. 图鉴
+   ========================================================= */
+function renderBrowse(){
+  const items = DATA.map(d => {
+    const r = getRec(d.id);
+    const st = (r && r.mastered) ? 'mastered' : (r && r.seen) ? 'learning' : 'new';
+    return `<div class="brow-item ${st}" data-act="expand" data-id="${d.id}">
+        <div class="brow-idx">${d.id}</div>
+        <div class="brow-main">
+          <div class="brow-name">${esc(d.name)}</div>
+          <div class="brow-sub">${esc(d.artist)} · ${esc(d.year)} · ${esc(d.country)}</div>
+        </div>
+        <div class="dot"></div>
+      </div>
+      <div class="brow-detail" id="det-${d.id}">
+        ${imgBox(d)}
+        <div class="brow-sub2">${esc(d.name)}<br>${esc(d.artist)}　|　${esc(d.year)}　|　${esc(d.century)}　|　${esc(d.country)}</div>
+      </div>`;
+  }).join('');
+
+  view.innerHTML = `
+    <div class="topbar">
+      <button class="icon-btn" data-act="home">←</button>
+      <div class="topbar-title">图鉴 · ${DATA.length} 件</div>
+      <div style="width:36px"></div>
+    </div>
+    <input class="search" id="searchBox" placeholder="搜索 作品 / 作者 / 流派 / 世纪">
+    <div id="browList">${items}</div>
+  `;
+
+  const box = document.getElementById('searchBox');
+  box.addEventListener('input', e => {
+    const v = e.target.value.trim();
+    document.querySelectorAll('.brow-item').forEach(el => {
+      const d = BY_ID[el.dataset.id];
+      const hay = d.name + d.artist + d.country + d.century + d.year;
+      const hit = !v || hay.includes(v);
+      el.style.display = hit ? '' : 'none';
+      const det = document.getElementById('det-' + d.id);
+      if(det) det.style.display = hit ? '' : 'none';
+    });
+  });
+}
+
+/* =========================================================
+   9. 事件
+   ========================================================= */
+document.addEventListener('click', async e => {
+  const el = e.target.closest('[data-act]');
+  if(!el) return;
+  const act = el.dataset.act;
+
+  switch(act){
+    case 'start':   startSession('mix', 20); break;
+    case 'review':  startSession('due', 50); break;
+    case 'browse':  showView('browse'); break;
+    case 'home':    showView('home'); break;
+    case 'import':  document.getElementById('fileInput').click(); break;
+    case 'clearImgs':
+      if(confirm('清空已导入的照片？（学习进度不受影响）')){
+        Object.values(IMG_MAP).forEach(u => { try{ URL.revokeObjectURL(u); }catch(e){} });
+        IMG_MAP = {};
+        try{ await dbClear(); }catch(e){}
+        renderHome();
+      }
+      break;
+    case 'quit':
+      if(confirm('结束本轮学习？')) { S = null; showView('home'); }
+      break;
+    case 'pick':    pickOption(el.dataset.val); break;
+    case 'reveal':  revealAnswer(); break;
+    case 'next':    nextCard(); break;
+    case 'kill':    killCard(); break;
+    case 'expand': {
+      const det = document.getElementById('det-' + el.dataset.id);
+      if(det) det.classList.toggle('open');
+      break;
+    }
+    case 'reset':
+      if(confirm('确定要清空所有学习进度吗？此操作不可恢复。')){
+        store = {};
+        save();
+        renderHome();
+      }
+      break;
+  }
+});
+
+document.addEventListener('change', async e => {
+  if(e.target.id === 'fileInput'){
+    const files = e.target.files;
+    if(files && files.length){
+      el_disabled(true);
+      try { await importFiles(files); }
+      catch(err){ alert('导入出错：' + err.message); }
+      el_disabled(false);
+    }
+    e.target.value = '';
+  }
+});
+
+function el_disabled(on){
+  document.querySelectorAll('.btn').forEach(b => { b.style.pointerEvents = on ? 'none' : ''; b.style.opacity = on ? '.5' : ''; });
+}
+
+document.addEventListener('keydown', e => {
+  if(currentView !== 'study' || !S) return;
+  if(e.key >= '1' && e.key <= '4'){
+    const btns = document.querySelectorAll('.opt');
+    const i = +e.key - 1;
+    if(btns[i] && !S.answered) btns[i].click();
+  }
+  if(e.key === 'Enter' || e.key === ' '){
+    e.preventDefault();
+    if(S.answered){
+      const b = document.querySelector('[data-act="next"]');
+      if(b) b.click();
+    } else {
+      const b = document.querySelector('[data-act="reveal"]');
+      if(b) b.click();
+    }
+  }
+});
+
+/* =========================================================
+   10. 启动：先读回已存图片，再渲染
+   ========================================================= */
+(async function boot(){
+  try {
+    const rows = await dbGetAll();
+    rows.forEach(([id, blob]) => {
+      try { IMG_MAP[id] = URL.createObjectURL(blob); } catch(e){}
+    });
+  } catch(e){}
+  probeImages();
+  renderHome();
+})();
+</script>
+</body>
+</html>
